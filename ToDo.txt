@@ -1,0 +1,4 @@
+# mate_discreta
+Apuntes de la materia Matematica Discreta
+
+# AGREGAR PERT Y CHEQUEAR TODAS LAS DEMOS Y DEFINICIONES
