@@ -1,0 +1,599 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{upgreek}
+\usepackage{geometry}
+\usepackage{amssymb}
+\usepackage{tipa}
+\usepackage{mathtools}
+\usepackage[dvipsnames]{xcolor}
+ \geometry{
+ a4paper,
+ total={160mm,247mm},
+ left=30mm,
+ top=30mm,
+ }
+ 
+\title{Matemática Discreta}
+\author{Micaela Perillo}
+\date{Agosto 2021}
+
+\renewcommand*\contentsname{Índice}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\pagebreak
+\tableofcontents
+\thispagestyle{empty}
+\pagebreak
+\pagenumbering{arabic} 
+
+\section{Definiciones}
+\theoremstyle{definition}
+\newtheorem{defn}{Definición}
+
+\subsection{Grafos}
+\begin{defn}
+Grafo \\ Un grafo $G=(\mathrm{V}, \mathrm{E})$ es una estructura matemática que consta de dos conjuntos $\mathrm{V}$ y $\mathrm{E}$. Los elementos de V se llaman vértices o nodos y los elementos de E se llaman aristas. Cada
+arista tiene un conjunto de uno o más vértices asociados que se llaman puntos extremos. $(\mathrm{V} \neq \emptyset)$
+\end{defn}
+
+\begin{defn}
+Grafo trivial \\ $\#V=1 \mathrm{y} \mathbf{\not{e}}=0$
+\end{defn}
+
+\begin{defn}
+Lazo \\ Es una arista cuyos puntos extremos son coincidentes.
+\end{defn}
+
+\begin{defn}
+Arista propia \\ Es una arista que no es un lazo.
+\end{defn}
+
+\begin{defn}
+Multigrafo \\ Un grafo $G=(\mathrm{V}, \mathrm{E})$ es un multigrafo si existen a $\mathrm{y} \mathrm{b} \in \mathrm{V}$ con dos o mas aristas incidentes en a y b. En caso contrario se llama grafo simple.
+\end{defn}
+
+\begin{defn}
+Grafo dirigido o digrafo \\ Es un grafo que tiene todas sus aristas dirigidas.
+\end{defn}
+
+\begin{defn}
+Multigrafo dirigido \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ es un multigrafo dirigido si existen $\mathrm{a}, \mathrm{b} \in \mathrm{V}$ con dos o más aristas de la forma $(\mathrm{a}, \mathrm{b})$. En caso contrario se llama digrafo simple.
+\end{defn}
+
+\begin{defn}
+Matriz de Incidencia \\ La matriz de incidencia de un grafo $G$ es la matriz $I_{C}$ cuyas filas y columnas son indexadas por alguin orden de $V_{G}$ y $E_{G}$ respectivamente, tal que:
+$$I_{C}[v, e]=\left\{\begin{array}{l}0 \text { si v no es un extremo de } e \text {; } \\ 1 \text { si v es un extremo de } e \text {; } \\ 2 \text { si e es un lazo en v. }\end{array}\right.$$ Si es un digrafo:
+$$I_{D}[v, e]=\left\{\begin{array}{ll}0 & \text { si } \mathrm{v} \text { es un extremo de } e \\ 1 & \text { si } \mathrm{v} \text { es la cabeza de } e \\ -1 & \text { si } \mathrm{v} \text { es la cola de } \mathrm{e} ; \\ 2 & \text { si e es un lazo de } \mathrm{v} .\end{array}\right.$$
+\end{defn}
+
+\begin{defn}
+Matriz de Adyacencia \\ La matriz de adyacencia de un grafo $\mathrm{G}$ es la matriz $A_{G}$ cuyas filas y columnas son indexadas por algún orden de $V_{G}$, tal que:
+$$A_{G}[u, v]=\left\{\begin{array}{l}\text { la cantidad de aristas entre ellos si u $\neq$ v} ; \\ \text { la cantidad de lazos si v = u} \\ \end{array}\right.$$
+$$A_{D}[u, v]=\left\{\begin{array}{ll}\text { la cantidad de aristas desde } u \text { hasta } v & \text { si } \mathrm{u} \neq \mathrm{v} \\ \text { la cantidad de lazos } & \text { si } \mathrm{v}=\mathrm{u}\end{array}\right.$$
+\end{defn}
+
+\begin{defn}
+Grado \\ El grado de un vértice en un grafo $G$ denotado $\mathrm{g}(\mathrm{v})$ es el número de aristas propias incidentes en v más el doble del número de lazos en v. \\ En un digrafo se define grado de salida de un vértice v $g_{s}(v)$ al número de aristas cuya cola está en v más el número de lazos y el grado de entrada de un vértice v $g_{\varepsilon}(v)$ al número de aristas cuya cabeza está en $\mathrm{v}$ más el número de lazos.
+\end{defn}
+
+\begin{defn}
+Grafo completo \\ Es un grafo simple sin lazos tal que todo par de vértices están unidos por una arista. Un grafo completo de n vértices se llama $K_{n}$
+\end{defn}
+
+\begin{defn}
+Grafo bipartito \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ simple sin lazos es bipartito si $V=V_{1} \cup V_{2}, V_{1} \cap V_{2}=0$ y cada arista de $G$ es de la forma a,b donde $a \in V_{1}$ y $\mathrm{b} \in V_{2}$. Si cada vértice de $V_{1}$ está unido con todos los vértices de $V_{2}$, se tiene un grafo bipartito completo. En este caso si $\# V_{1}=\mathrm{m}$ y $\#V_{2}=\mathrm{n}$ se denota $K_{m, n}$
+\end{defn}
+
+\begin{defn}
+Grafo regular \\ Todos los vértices tienen el mismo grado. Se llama k-regular si todos los vértices tienen grado k
+\end{defn}
+
+\begin{defn}
+Subgrafo \\ Un subgrafo de un grafo G (dirigido o no) es un grafo $\mathrm{H}$, que cumple que $V_{H} \subseteq V_{G} \mathrm{y}$ $\bar{E}_{H} \subseteq \bar{E}_{G}$
+\end{defn}
+
+\begin{defn}
+Subgrafo recubridor \\ $\mathrm{H}$ es un subgrafo recubridor de $\mathrm{G}$ si $V_{G}=V_{H} .$
+\end{defn}
+
+\begin{defn}
+Subgrafo inducido Sea $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ un grafo (dirigido o no). Si $0 \neq U \subseteq V$, el subgrafo de $\mathrm{G}$ inducido por $U$ es el subgrafo cuyo conjunto de vértices es $U$ y que contiene todas las aristas de $G$ de la forma: 
+\begin{enumerate}
+    \item $(\mathrm{x}, \mathrm{y})$ para $\mathrm{x}, \mathrm{y} \in U$ si es dirigido.
+    \item $\{\mathrm{x}, \mathrm{y}\}$ para $\mathrm{x}, \mathrm{y} \in U$ si es no dirigido.
+\end{enumerate}
+Notación: $\mathrm{G}(\mathrm{U})=<U>$
+\end{defn}
+
+\begin{defn}
+Borrado de un vértice \\ Si v es un vértice de un grafo (dirigido o no) $G$, entonces $G-v$ es el subgrafo inducido por el conjunto de vértices $V_{G}-\{v\} .$ En general, el resultado de borrar iterativamente todos los vértices de $U \subseteq V_{G}$ se denota $G-U$.
+\end{defn}
+
+\begin{defn}
+Borrado de una arista \\ Si e es una arista del grafo (dirigido o no) $G$, entonces $G-e$ es el subgrafo cuyo conjunto de aristas es $E_{G}-\{e\}$ y el conjunto de vértices es $V_{G}$
+\end{defn}
+
+\begin{defn}
+Agregado de un vértice \\ Agregar un vértice $v$ a un grafo $\mathrm{G}$, donde $v$ no pertenece a $V_{G}$ significa crear un supergrafo denotado $G \bigcup\{v\}$ donde el conjunto de es $V_{G} \bigcup\{v\}$ y el conjunto de aristas es $E_{G}$.
+\end{defn}
+
+\begin{defn}
+Agregado de una arista \\ Agregar una arista e entre dos vértices $v$ y $u$ del grafo $\mathrm{G}$ significa crear un supergrafo denotado $G \bigcup\{e\}$ donde el conjunto de vértices es $V_{G} \mathrm{y}$ el conjunto de aristas es $E_{G} \cup\{e\}$
+\end{defn}
+
+\begin{defn}
+Suma de grafos \\ Sean G y H dos grafos. Sumando $\mathrm{G}$ y $\mathrm{H}$ se obtiene $V_{G+H}=V_{G} \bigcup V_{H}$ y $E_{G+H}=$ $E_{G} \cup E_{H} \cup\left\{e=\{u, v\}: u \in V_{G}, v \in V_{H}\right\}$
+\end{defn}
+
+\begin{defn}
+Complemento \\ El complemento de G (grafo simple sin lazos no dirigido), que se denota $\bar{G}$ o $G^{c}$ es el subgrafo de $K_{n}$ formado por los n vértices de G y todas las aristas que no están en $\mathrm{G}$.
+\end{defn}
+
+\begin{defn}
+Isomorfismo de grafos \\ Sean $G_{1}\left(V_{1}, E_{1}\right)$ y $G_{2}\left(V_{2}, E_{2}\right)$ dos grafos no dirigidos, una función $f: V_{1} \rightarrow V_{2}$ es un isomorfismo de grafos si:
+\begin{enumerate}
+    \item $f$ es biyectiva.
+    \item $\forall a, b \in V_{1},\{\mathrm{a}, \mathrm{b}\} \in E_{1} \Leftrightarrow\{\mathrm{f}(\mathrm{a}), \mathrm{f}(\mathrm{b})\} \in E_{2}$
+\end{enumerate}
+Cuando existe dicha función $G_{1}$ y $G_{2}$ son grafos isomorfos. Notación: $G_{1} \simeq G_{2} .$ Cada clase de equivalencia se llama tipo de ismorfismo.
+\end{defn}
+
+\subsection{Caminos}
+\begin{defn}
+Conexidad \\ Un grafo es conexo si $\forall$ par de vértices $u$ y $v$ hay un camino $u-v$.
+\end{defn}
+
+\begin{defn}
+Digrafo Conexo
+\begin{itemize}
+    \item Conexidad débil: Un digrafo es débilmente conexo si al considerarlo no dirigido es conexo.
+    \item Conexidad fuerte: Un digrafo es fuertemente conexo si todo par de vértices en el digrafo es mutuamente alcanzable. Dos vértices $u$ y $v$ son mutuamente alcanzables si existen en el digrafo un camino directo $u-v$ y un camino directo $v-u$.
+\end{itemize} 
+\end{defn}
+\begin{defn}
+Recorrido euleriano \\ Un recorrido euleriano en un grafo es un recorrido que contiene todas las aristas del grafo.
+\end{defn}
+
+\begin{defn}
+Circuito euleriano \\ Un circuito euleriano es un recorrido euleriano cerrado.
+\end{defn}
+
+\begin{defn}
+Grafo euleriano \\ Es un grafo que tiene un circuito euleriano.
+\end{defn}
+
+\begin{defn}
+Camino hamiltoniano \\ Es un camino simple (no ciclo) en el grafo que contiene todos sus vértices.
+\end{defn}
+
+\begin{defn}
+Ciclo hamiltoniano Si $G$ es un grafo o multigrafo y $\# V \geq 3$ decimos que $G$ tiene un ciclo hamiltoniano si existe un ciclo en $G$ que contenga cada vértice de $V$.
+\end{defn}
+
+\subsection{Conexidad}
+
+\begin{defn}
+Componente de un grafo\\ Se llama componente de un grafo a un subgrafo conexo maximal del mismo. Es decir, si $H$ es una componente entonces no es un subgrafo propio de ningún subgrafo conexo de $G$. Si un grafo es conexo tiene una única componente que es el mismo grafo
+\end{defn}
+
+\begin{defn}
+Componente de un vértice $C(v)$ \\ Es el subgrafo inducido por todos los vértices alcanzables por $v$. \\
+Observación:
+\begin{enumerate}
+    \item Si definimos $X \sim Y$, si $Y$ es alcanzable por $X$ (en un grafo) entonces esta relación es de equivalencia.
+    \item Si $x \in C(v) \Rightarrow C(x)=C(v)$
+\end{enumerate}
+\end{defn}
+
+\begin{defn}
+Vértice de corte (o punto de articulación)\\ Un vértice es de corte en un grafo $G$, si la cantidad de componentes conexas de $G-\{v\}$ es mayor que la cantidad de componentes conexas de $G$.
+\end{defn}
+
+\begin{defn}
+Arista de corte\\ Una arista $e$ es de corte, si la cantidad de componentes conexas de $G-\{e\}$ es mayor que la cantidad de componenetes conexas de $G$. También se las llama arista puente.
+\end{defn}
+
+\begin{defn}
+Conexidad por vértices $K_{v}(G)$ \\ Es la cantidad mínima de vértices que hay que remover de grafo $G$ para que deje de ser conexo o se transforme en el grafo trivial. Si un grafo no es conexo, $K_{v}(G)=0 .$ Si $K_{v}(G)$ es mayor o igual que $k$,
+se dice que $G$ es $k$-conexo. \\
+Observación: si un grafo es k-conexo, entonces $\# V_{G}>K$ \\
+$K_n$ es $(n-1)$ conexo, $(n-2)$ conexo, $\dots$, conexo
+\end{defn}
+
+\begin{defn}
+Vértice interno\\ Dado un camino simple P en un grafo G, $v$ es vértice interno si no es ni el inicial ni el final
+\end{defn}
+
+\begin{defn}
+Conexidad por aristas $K_{e}(G)$ \\ Es la cantidad mínima de aristas que hay que remover del grafo $G$, para desconectarlo. Si $K_{e}(G)$ es mayor o igual que $k$, se dice que $G$ es $k$-aristas conexo. \\*
+Si G es k-conexo lo unico que puedo asegurar es que si saco $k-1$ vértices el grafo sigue siendo conexo
+\end{defn}
+
+\subsection{Planaridad}
+
+\begin{defn}
+Grafo plano \\ Un grafo es plano si puede dibujarse en el plano de modo que sus aristas se intersequen solo en los vértices de $G$. $\iota: G \rightarrow S$ (función inmersión en el plano)
+\end{defn}
+
+\begin{defn}
+Región \\ Cuando realizamos la inmersión plana de un grafo $G$ el plano queda dividido en regiones contiguas llamadas caras o simplemente regiones.
+\end{defn}
+
+\begin{defn}
+Homeomorfismo \\
+Dos grafos $G$ y $H$ son homeomorfos si son isomorfos o si ambos pueden obtenerse del mismo grafo por una suceción de subdivisiones elementales. Notación: $G \cong_{H} H$
+La relación de homeomorfismo es una relación de equivalencia. \\
+Operaciones
+\begin{itemize}
+    \item Subdivisión elemental de una arista: Sea $e=\{u, v\}$ una arista del grafo $G .$ Subdividir e significa agregar $w$ a $V_{G}$ y reemplazar e por $e_{1}=\{u, w\} \mathrm{y}$ $e_{2}=\{w, v\}$
+    \item Remover débilmente un vértioe: es la operación inversa a la anterior. Sea $w$ un vértice de grado dos en $G$ tal que $e_{1}=\{u, w\}$ y $e_{2}=\{w, v\}$ son las aristas incidentes en él, remover débilmente $w$ significa sacar $w$ de $V_{G}$ y reemplazar $e_{1}$ y $e_{2}$ por la arista $e=\{u, v\}$
+
+\end{itemize}
+Si el grafo $G$ es homeomorfo o isomorfo al grafo $H$, entonces:
+$H$ es plano $\Leftrightarrow G$ es plano
+\end{defn}
+
+\begin{defn}
+Aristas Inseparables \\
+Sea $H$ un subgrafo de un grafo conexo $G .$ Dos aristas $e_{1}$ y $e_{2}$ del conjunto de aristas de $E_{G}-E_{H}$ son inseparables por $H$ si existe un camino en $G$ que contiene ambas aristas pero cuyos vértices internos no están en $H$.
+Observación:
+La relación de inseparables por $H$ es una relación de equivalencia sobre $E_{G}-E_{H}$.
+\end{defn}
+
+\begin{defn}
+Apendice de H \\ Sea $H$ un subgrafo de un grafo $G$. Entonces un apéndice de $H$ es el subgrafo inducido sobre una clase de equivalencia de aristas de $E_{G}-E_{H}$ bajo la relación de inseparables.
+\end{defn}
+
+\subsection{Grafo Dual}
+
+\begin{defn}
+Grafo Dual \\ Para construir un dual de una inmersión plana de un grafo o multigrado plano G, colocamos un vértice dentro de cada región incluyendo la región infinita. Para cada arista compartida por dos regiones dibujamos una arista que une los vértices que están dentro de cada región. Si la frontera de la región tiene una arista que se recorre dos veces dibujamos un lazo en el vértice de dicha región.
+\end{defn}
+ 
+\subsection{Coloreo}
+Coloreo de vértices. $f: V_{G} \rightarrow C$ (conjunto de colores).
+
+\begin{defn}
+$k$-coloreo de vértices: Es un coloreo que usa exactamente $k$ colores $(k$ es un natural).
+\end{defn}
+
+\begin{defn}
+Coloreo propio \\ Vértices adyacentes tiene colores distintos.
+\end{defn}
+
+\begin{defn}
+$k$-coloreable \\ Un grafo $G$ es $k$-coloreable si tiene un $k$-coloreo propio.
+\end{defn}
+
+\begin{defn}
+Clase de color \\ Es un subconjunto de $V_{G}$ que tiene todos los vértices del mismo color.
+\end{defn}
+
+\begin{defn}
+Número cromático $X(G)$ \\ Es el mínimo número de colores diferentes que se requiere para un coloreo propio.
+\end{defn}
+
+\begin{defn}
+Cromatico \\ $G$ es $k$-cromático si $X(G)=k$.
+\end{defn}
+
+\begin{defn}
+Obstrucción Cromática \\ Una obstrucción $k$ cromática es un subgrafo $H / X(H)>k$. Entonces fuerza a todo grafo que la contiene a tener $X(G)>k$.
+\end{defn}
+
+\subsection{Árboles}
+
+\begin{defn}
+Árbol \\ Grafo conexo sin ciclos
+\end{defn}
+
+\begin{defn}
+Árbol con Raíz \\ Árbol dirigido con un vertice distinguido $r$ llamado raíz tal que para todo otro vértice $v$ hay un camino directo de $r$ a $v$.
+\end{defn}
+
+\begin{defn}
+Profundidad \\ En un árbol con raíz la profundidad de y es la distancia de y a la raíz.
+\end{defn}
+
+\begin{defn}
+Altura \\ La altura de un árbol con raíz es la longitud del camino más largo desde la raíz.
+\end{defn}
+
+\begin{defn}
+Árbol m-ario \\ Un árbol m-ario con $m\geq2$ es un árbol con raíz en el cual cada vértice tiene máximo ni hijos. 
+\end{defn}
+
+\begin{defn}
+Árbol m-ario completo \\ En un árbol m-ario completo cada vértice interno tiene m hijos y todas las hojas tienen la misma profundidad.
+\end{defn}
+
+\begin{defn}
+Código binario \\ Es una asginación de símbolos a cadenas de bits. Cada cadena de bits se llama palabra del código. 36) Código prefijo: es un código binario donde ninguna palabra del código es subpalabra inicial de otra.
+\end{defn}
+\begin{defn}
+Código Prefijo \\ Es un código binario donde ninguna palabra del código es subpalabra inicial de otra
+\end{defn}
+\begin{defn}
+Árbol de expresión \\Definición recursiva: un árbol de expresión es un nodo con un número o un árbol con una operación como raíz donde su subárbol derecho e izquierdo es un árbol de expresión.
+\end{defn}
+
+\subsection{Redes}
+\begin{defn}
+ Red \\ Una red N con una fuente simple y un sumidero simple es un digrafo conexo con dos vértices distinguidos, uno llamado fuente tal que su grado de salida sea distinto de 0 y otro llamado sumidero tal que su grado de entrada sea distinto de 0. 
+\end{defn}
+\begin{defn}
+Red con capacidad \\ Es una red tal que cada arco tiene asignado una capacidad no negativa cap(e) llamada capacidad de arco.
+\end{defn}
+\begin{defn}
+Flujo \\ Sea N una red f-s con capacidad, un posible flujo en N es una función que va desde las aristas de N hasta los reales positivos, asigna un número real positivo f(e) a cada arco tal que
+\begin{enumerate}
+    \item Restricción de capacidad: $f(e)<cap(e)$
+    \item Restricción de conservación: La sumatoria del flujo entrante es igual a la sumatoria del flujo saliente de cualquier vértice menos de la fuente y del sumidero.
+\end{enumerate}
+\end{defn}
+\begin{defn}
+Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>$ es la suma de las capacidades de los arcos en el corte $<Vf,Vs>$.
+\end{defn}
+\pagebreak
+\section{Demostraciones}
+\begin{enumerate}
+
+\subsection{Grafos}
+    \item Cada arista aporta 2 a la suma de los grados \\
+    Sea el grafo $G(V, E)$ y sean $v_{i} \in V$ los vértices del grafo $G, \mathrm{y}$ $n=\# V$ entonces
+    $$ \sum_{i=1}^{n} g\left(v_{i}\right)=2 \# E $$
+    \item La cantidad de vértices de grado impar es par \\
+    \textbf{Truco: Supongo que hay $2k+1\leq n$ vértices de grado impar} \\
+    Sea el grafo $G(V, E)$ donde la cantidad de vértices de $G$ es $n .$ Supongamos que hay $2 k+1 \leq n$ vértices de grado impar, entonces
+    $$ \sum_{i=1}^{2 k+1} g\left(v_{i}\right)+\sum_{i=2 k+2}^{n} g\left(v_{i}\right)=2 \# E $$
+    La suma impar de números impares es impar, la suma de números pares es par, la suma de un número impar más uno par da impar. Absurdo.
+    
+    \item Un grafo G es bipartito $\iff$ no tiene ciclos de longitud impar. \\
+    \textbf{Truco ida: Supongo que un vértice pertenece a un ciclo, se puede volver a ese vértice solo por cantidad par de aristas} \\
+    Supongo que un vértice de $V_1$ pertenece a un ciclo, para retornar a dicho vértice debo recorrer un número par de aristas ya que cada arista tiene vértices extremos de diferentes conjuntos $V_1$ y $V_2$. \\
+    \textbf{Truco vuelta: Necesito demostrar que un grafo es bipartito, propongo una bipartición por distancia de un vértice y supongo que hay aristas entre vértices del mismo conjunto} \\
+    Sea $G$ un grafo con 2 o más vértices y sin ciclos de longitud impar. Sin perder generalidad supongamos que es conexo (si no lo fuera se puede hacer la prueba para cada componente conexa del grafo). \\
+    Tomemos un vértice $x$ cualquiera del grafo. Definamos una partición de los vértices de $G$ de la siguiente manera:
+    $$
+    \begin{array}{c}
+    V_{1}=\left\{v \in V_{G}: d(x, v) \text { es par }\right\} \\
+    V_{2}=\left\{u \in V_{G}: d(x, u) \text { es impar }\right\}
+    \end{array}
+    $$
+    $V_{1} \neq\{\varnothing\}$ ya que $x \in V_{1}$ y la $d(x, x)=0$ que es par \\
+    $V_{2} \neq\{\varnothing\}$ pues $G$ es conexo entonces existe una arista $\{x, v\}$ en el grafo por lo tanto $v \in V_{2}$ ya que la $d(x, v)=1$ que es impar \\
+    Supongamos que existe una arista $\left\{v^{\prime}, v\right\}$ entre un vértice $v$ de $V_{1}$ y uno $v^{\prime}$ de $V_{1}$ como la $d(x, v)=2 k$ y la $d\left(x, v^{\prime}\right)=2 q$ donde $k$ y $q$ son números enteros entonces el camino $x-v$ o $<v,\left\{v^{\prime}, v\right\}, v^{\prime}>$ o $v^{\prime}-x$ sería un ciclo de longitud $2 k+2 q+1$ y esto es absurdo porque por hipótesis el grafo no tiene ciclos de longitud impar.
+
+\subsection{Caminos}
+
+    \item Sea $x - y$ un camino abierto, entonces $x − y$ es un camino simple o puede reducirse a un camino simple. \\
+    Si no $x - y$ es un camino simple, entonces contiene un subcamino cerrado, si lo
+    borramos (reducción de camino) obtenemos un camino más corto que puede ser
+    simple o no. Si es simple listo, sino contiene un subcamino cerrado y repetimos la reducción hasta obtener un camino simple.
+    
+    \item Todo circuito (al menos una arista) contiene un subcamino que es un ciclo \\
+    El circuito puede ser un ciclo en si mismo si, no lo es repite algún vértice por lo tanto contiene un subcamino cerrado que es un ciclo. 
+    
+    \item Todo circuito se puede descomponer en ciclos de aristas disjuntas. \\
+    \textbf{Truco: Inducción en cantidad de aristas del circuito. Elimino ciclo y vértices aislados y aplico HI.} \\
+    Caso base: Si el circuito tiene una sola arista es un $C_1$ \\
+    Hipótesis inductiva: Supongo válida para el caso de n o menos de n aristas \\
+    Tesis inductiva: Sabemos que todo circuito tiene un subcamino que es un ciclo. Elimino todas las aristas del ciclo y los vértices que quedaron aislados. Ahora tiene menos de $n+1$ aristas, entonces por HI se puede descomponer en ciclos, entonces el ciclo que elimine, más esta descomposición provoca la descomposición en ciclos del original. Si quedara no conexo se puede aplicar la hipótesis en cada componente.
+    
+    \item G es euleriano $\iff$ G es conexo y todos sus vértices tienen grado par \\
+    \textbf{Truco ida: es conexo por ser euleriano y recorro los vértices, me doy cuenta de que cada aporte al grado de v es par.} \\
+    G es euleriano entonces existe un camino entre todo par de vértices por lo que es conexo. Luego recorro el circuito, cuando visito a otro, si tiene lazo aporta al grado en 2 y si no entro y salgo por lo que también es un aporte de 2, así secuencialmente hasta volver hasta donde empecé pues es un circuito, al final salí y volví de mi primer vértice porque el aporte fue par también. \\
+    \textbf{Truco vuelta: inducción en cantidad de aristas creando circuitos. Elimino circuito y vértices aislados y aplico HI} \\
+    Caso base: $C_1$ y $C_2$ eulerianos \\
+    Hipótesis inductiva: Supongo válida para el caso de n o menos de n aristas. \\
+    Tesis inductiva: Como es conexo y todos los vértices tienen grado par puedo construir un circuito T, si T tiene todas las aristas del grafo listo, sino elimino las aristas de T y los vértices aislados, el grafo resultante respeta HI. Si quedara no conexo se puede aplicar la hipótesis en cada componente.
+
+\subsection{Conexidad}
+
+    \item G conexo, v es vértice de corte $\iff$ $\exists$ u y w $\in$ $V_G$ tal que todo camino u-w contiene a v. \\
+    \textbf{Truco ida: G-\{v\} y u y w en diferentes componentes.} \\
+    Si v es de corte entonces G-\{v\} no es conexo, si u y w están en distintas componentes entonces todo camino u-w pasaba por v. \\
+    \textbf{Truco vuelta: Si todo camino u-w contiene a v entonces G-\{v\} no es conexo} \\
+    Si existen u y w tales que todo camino que los une en G contiene a v entonces en G-\{v\} no existe camino u-w $\implies$ G-{v} no es conexo $\implies$ v es vertice de corte
+    
+    \item G conexo, e es arista de corte $\iff$ e no pertenece a un ciclo en G \\
+    \textbf{Truco ida: Por el contrarrecíproco, e pertenece a un ciclo} $\implies$ \textbf{no es de corte} \\
+    Si e pertenece a un ciclo C, entonces sean u y v los extremos de e, entonces existen dos caminos de u a v, $<u,e,v>$ y el resto del ciclo, entonces G-\{e\} no se desconecta, entonces e no es de corte. \\
+    \textbf{Truco vuelta: Por el contrarrecíproco, e no es un puente} $\implies$ \textbf{e pertenece a un ciclo} \\
+    Si e no es un puente todo par de vértices unidos por un camino L' que contiene a e está unido por otro que no contiene a e llamemoslo $L\implies L \cup L'$ contiene un ciclo que contiene a e. Por lo tanto e pertenece a un ciclo de G
+    
+    \item $K_e(G)\leq\delta$ \\
+    Basta ver que quitando las aristas del vértice con grado mínimo el grafo se desconecta.
+    
+    \item G k-conexo con $k\geq3\implies$ G-e es (k-1)-conexo \\
+    \textbf{Truco: W un conjunto de (k-2) vértices, G-e es (k-1) conexo si G-e-W es conexo. Dos casos si algún extremo de e pertenece a W o si no.} \\
+    Nos queda por lo menos un vértice z en ambos casos. G-W-a es conexo $\implies$ $\exists$ un camino $P_1$ de b a z. Análogo G-W-b y $P_2$, la concatenación de esos caminos es un camino a-b en G-W-e.
+    Para cualquier otro vértice existe camino ya que G-W-a y G-W-b son conexos.
+    Basta ver que existe un camino x-y para cualquier par de vertices en G-e-W. Sea $e=\{a,b\}:$
+    \begin{itemize}
+        \item Caso 1 $(a \vee b) \in W$ \\
+        Veamos que hay un camino $a-b$. $\# V_{G} \geq k+1$ debido a que G es $k-$ conexo $\Rightarrow \exists$ un vértice $z$ distinto de a y de b que no está en $W$.Como $G \backslash W \backslash$ a es conexo $\exists$ un camino $P_{1}$ de b a z. Como $G \backslash W \backslash$ b es conexo $\exists$ un camino $P_{2}$ de $a$ a $z \Rightarrow P_{1} o P_{2}$ es un camino $a-b$ en $G \backslash W \backslash$ e.
+        \item Caso 2: $\sim[(a \vee b) \in W] \equiv a \notin W \wedge b \notin W$ \\ En este caso $G \backslash e \backslash \mathrm{W}=G \backslash \mathrm{W}$ como $G \backslash \mathrm{W}$ es dos conexo tenemos el camino \\* 
+        Veamos que hay un camino $x-y$ cuando $x \lor y$ no son extremos de e. Supongamos $x \neq a$, $y \neq a .$ Como $G \backslash W \backslash$ a es conexo $\Rightarrow$ existe camino $x-y$ en $G \backslash W \backslash$ e pues al sacar a desaparece e.
+    \end{itemize}
+
+    \item Sea G un grafo conexo, la conectividad por aristas es mayor o igual que la conectividad por vertices: $K_e(G)\geq K_v(G)$ \\
+    Supongo $K_v(G) = k$ y sea S un conjunto de k-1 aristas de G, G-S es conexo $\implies$ $K_e(G)>k-1 \implies$ $K_e(G)k = K_v(G)$. \\
+    Importante: $\delta \geq K_e(G) \geq K_v(G) \geq k$ (conexidad)
+    
+    \item Teorema de Whitney: Sea $G$ un grafo conexo con 3 o mas vértices, entonces $G$ es 2-conexo si y sólo si para todo par de vértices $u, v$ en $G$, hay por lo menos 2 caminos internamente disjuntos que los une. \\
+    $\Longrightarrow$) Suponemos que $G$ es 2 -conexo, y sean $x, y$ dos vértices de $G$. Usaremos inducción en la distancia $d(x, y)$ para probar que hay al menos dos caminos disjuntos $x-y$ en $G$. Si existe una arista $e$ que une los vértices $x, y($ es decir, $d(x, y)=1$ ) entonces el grafo $G-e$ es conexo. Por lo tanto, existe un camino $x-y$ que denominaremos $P$ en $G-e$. Se deduce que el camino $P$ y el camino $<x, e, y>$ son dos caminos internamente disjuntos $x-y$ en $G$. \\
+    Luego, asumimos que para algún $\mathrm{n} \geq 2$ la afirmación anterior se mantiene para todo par de vértices cuya distancia es menor que $\mathrm{n}$. Sean $x, y$ vértices cuya distancia $d(x, y)=\mathrm{n}$, y consideremos un camino $x-y$ de longitud $\mathrm{n}$. Sea $w$ el vértice que precede inmediatamente al vértice $y$ en dicho camino y sea $e$ la arista entre los vértices $w$ e $y$. Como $d(x, w)<\mathrm{n}$, la hipótesis inductiva implica que hay dos caminos $x-w$ internamente disjuntos en $G$, que llamaremos $P$ y $Q$. Asimismo, como $G$ es 2-conexo, existe un camino $x$ - $y$ llamado $R$ en $G$ que evita al vértice $w$. Las dos posibles situaciones del camino $Q$ se encuentran ilustradas en la figura siguiente: $Q$ puede contener al vértice $y$ (como se muestra a la derecha); o no contenerlo (izquierda). \\
+    $\Longleftarrow$) Para demostrarlo por contrarrecíproco, suponemos que el grafo $G$ no es 2 -conexo. Luego, sea $v$ un punto de articulación de $G .$ Como $G-\{v\}$ no es conexo, entonces existen dos vértices $x, y$ talque no existe el camino $x-y$ en $G-\{v\} .$ De esto se deduce que $v$ es un vértice interno de cada camino $x-y$ en $G$. Por lo que no existe en $G$ dos caminos $x-y$ internamente disjuntos. 
+    
+    \item Un grafo G es 2-conexo $\iff$ G es un ciclo o una síntesis de Whitney de un ciclo \\
+    \textbf{Truco ida: Si G es un ciclo listo sino siempre podemos adicionar caminos que tengan las aristas que nos faltan.} \\
+    Sea $G_0$ un ciclo en G, si $G_0$=G listo. Sino tomo una arista en G que no esté en $G_0$ y por síntesis de Whitney puedo adicionar un camino a $G_0$ que incluya dicha arista, repito hasta obtener G. \\
+    \textbf{Truco vuelta: Si G es un ciclo es 2-conexo, si no por proposición al agregarle un camino simple a un ciclo sigue siendo 2-conexo.} \\
+    Supongo C=$G_0$, $G_1$, …, $G_n$=G una síntesis de Whitney de G a partir de un ciclo C. Como todo ciclo es 2-conexo y al agregarle un camino simple se mantiene la 2-conexidad entonces G es 2-conexo.
+    
+    \item Sea $h_k(n)$ la mínima cantidad de aristas necesarias para un grafo k-conexo con n-vertices. Entonces $h_k(n)\geq\frac{kn}{2}$ \\
+    $$k\leq k_v(g)\leq k_e(G)\leq\delta \land 2\#E=\sum_{v_i\in V_G}g(V_i)\geq n\delta\geq nk_e\geq nk_v\geq nk \implies h_k(n)=\left[\frac{kn}{2}\right]$$
+    $h_k$ es la mínima cantidad de aristas para un grafo de $n$ vértices $k$-conexo
+    
+    \item Teorema de Euler \\
+    G plano, conexo con v vertice, e aristas y r regiones determinadas por una inmersión plana de G $\implies$ $v-e+r=2$ \\
+    \textbf{Truco: Inducción en aristas, caso 1 si le quito una arista sigue conexo, caso 2 si se desconecta.} \\
+    Caso Base) $K_1$, $e=0$, $v=1$, $r=1$ entonces 1-0+1=2. \\
+    Hipótesis Inductiva) Supongo válida para $e\leq k$ $v - e + r = 2$. \\
+    Tesis Inductiva) $e=k+1$. 
+    \begin{itemize}
+        \item Caso 1: G-e es conexo. \\
+    En G-e hay k aristas y r-1 regiones $v - k + r - 1 = v - (k + 1) + r = 2$
+        \item Caso 2: G-e no es conexo. \\
+    Quedan dos grafos conexos con menos de k+1 aristas. En cada grafo se cumple HI) \\
+    $v_1 - e_1 + r_1 = 2 \land v_2 - e_2 + r_2 = 2$ \\
+    $\implies v - (e - 1) + r + 1 = 4 \implies v - e + r = 2 $
+    \end{itemize}
+    
+    \item Corolario 1 de Euler: G plano, conexo con v vértices, e aristas y r regiones determinadas por una inmersión plana de G \\
+    $k_{v}(G) \leq k_{e}(G) \leq \delta$ $2 \# E=\sum_{v_{i} \in V_{G}} g\left(v_{i}\right) \geq n \delta \geq n k_{e}(G) \geq n k_{v}(G) \geq n k$ $\Rightarrow h_{k}(n)=\left[\frac{k n}{2}\right]$ es la mínima cantidad de aristas para un grafo de n vértices k conexo
+    $$
+    \Rightarrow \sum_{i=1}^{r} g\left(R_{i}\right)=2 e
+    $$
+    Cada arista pertenece a la frontera de dos regiones o se cuenta dos veces en la frontera de una misma región si es un vértice colgante.
+    
+    \item Corolario 2 de Euler: G plano, conexo, sin lazos, simple y con al menos tres aristas
+    $$\sum_{i=1}^rg(R_i)=2e\geq 3r \implies 3r\leq 2e \implies r = 2-v+e\implies e\leq 3v-6$$
+    
+    \item Corolario 3 de Euler: G plano, conexo y bipartito con al menos 2 aristas \\
+    Como es bipartito, no tiene lazos ni multiaristas. Entonces tiene como minimo 2 aristas\\
+    Numero de regiones
+    $$\sum_{i=1}^rg(R_i)\geq4r\implies4r\leq2e\land v-e+r=2 \implies r=2-v+e$$
+    $$\implies 4(2-v+e)\leq3e\implies 8-4v+4e\leq 2e\implies e\leq 2v-4$$
+    En un grafo bipartito la frontera de cada región incluyendo la infinita
+    tiene como mínimo 4 aristas. Después es igual a la anterior
+
+    \item Dos bloques diferentes de un grafo G deben tener como mucho un vértice en común. \\
+    \textbf{Truco: Supongo que tienen dos vértices en común, veo que esos dos vértices no son de corte porque existe un camino entre vértices de los dos bloques cuando elimino ambos, contradiciendo la maximalidad.} \\
+    Sean $B_{1}$ y $B_{2}$ dos bloques diferentes de un grafo $G$, supongamos que existen $x$ e $y$ vértices de $B_{1} \cap B_{2}$.\\ $B_{1}-x$ es conexo $\Rightarrow \exists$ camino $P_{1}=v-y \quad \forall \quad v \in B_{1}-x$ \\
+    $B_{2}-x$ es conexo $\Rightarrow \exists$ camino $P_{2}=y-u \quad \forall \quad u \in B_{2}-x$ \\
+    $\Rightarrow P_{1} o P_{2}=v-u$ es un camino en $\left(B_{1} \cup B_{2}\right)-x$ \\
+    $\Rightarrow x$ no es vértice de corte de $\left(B_{1} \cup B_{2}\right)$ \\
+    Lo mismo puede plantearse para $y$. Luego $\left(B_{1} \cup B_{2}\right)$ no tiene vértice de corte $\mathrm{y}$ esto contradice la maximalidad.
+    
+\subsection{Coloreo}
+    \item Sea G k-critico $\impliesg(V_i)\geq k-1$, $\forall$ $V_i\in V_G$ \\
+    \textbf{Truco: Supongo $g(vi)<k-1$, quito el vértice, pinto los adyacentes de diferentes colores y veo que poniendolo de nuevo puedo pintarlos con k-1 colores, absurdo porque es k-crítico.} \\
+    Supongo $g(v_i)<k-1$, al quitar $v_i$ el grafo resultante se puede pintar con k-2 colores pues $v_i$ tiene a lo sumo k-2 adyacentes, pero agregándolo de nuevo uso k-1 colores, absurdo porque se necesitaban k colores.
+    
+    \item Sea G un grafo $X(G) \geq \left[\frac{\#V_G}{ind(G)}\right]$ \\
+    Cada clase de color tiene como mucho ind(G) vertices.\\
+    La cantidad de vertices $n=\sum_{i=1}^{X(G)}n_i\leq X(G).ind(G)$ siendo $n_i$ la cantidad de vertices de cada clase de color
+
+\subsection{Arboles}
+    \item Sea $e$ una arista en un grafo conexo $G$ entonces $G-e$ es conexo $\iff$ $e$ es una arista ciclo de $G$ \\
+        $\Rightarrow)$ Sea $e = \{a,b\}$ si $G-e$ es conexo existe otro camino simple $a-b$ en el
+        grafo. La concatenación de dicho camino con el camino $<a,e,b>$ forma un
+        ciclo en $G$ al que pertenece la arista $e$ \\
+        $\Leftarrow)$ Si $e$ es una arista ciclo de $G$, entonces $e$ pertenece a un ciclo, entonces sus
+        extremos están unidos por un camino que no contiene a $e$. Además, cualquier
+        par de vértices unidos por un camino que contiene a e también están unidos
+        por un camino que no los contiene (se reemplaza la arista $e$ por el camino
+        $C-e$. Entonces el grafo no se desconecta al quitar $e$ por lo que $G-e$ es
+        conexo.
+    
+    \item Todo árbol con por lo menos una arista tiene por lo menos dos vértices de grado 1. \\
+    \textbf{Truco: Tomar un camino simple maximal y suponer que un extremo tiene grado 2} \\
+    Tomamos un camino simple maximal, los extremos tienen grado 1. Si suponemos que algún extremo tiene grado 2, si es adyacente a otro del camino existiría un ciclo y si no se contradeciría la maximalidad. 
+    
+    \item Todo árbol con n vértices tiene n-1 aristas. \\
+    \textbf{Truco: Teorema de Euler} \\
+    Un árbol es plano porque es imposible que tenga un subgrafo homeomorfo a $K_5$ o $K_{3,3}$. Ademas como no tiene ciclos el grafo tiene una sola región: la infinita. Por el Teorema de Euler: $v - e + r =2 \implies n - e + 1 = 2 \implies e = n - 1.$ \\
+    Corolarios 
+    \begin{itemize}
+        \item Un bosque F con n vertices y K(G) componentes tiene n-K(G) aristas
+        \item Un grafo G con n vertices tiene por lo menos n-K(G) aristas
+    \end{itemize}
+    
+    \item Sea un grafo G simple con n vértices y k componentes $\implies$ la cantidad de aristas es $\#E_G\leq \frac{(n-k)(n-k+1)}{2}$ \\
+    Cuando tenemos k componenetes la maxima cantidad de aristas se obtiene cuando $k-1$ componentes son triviales y la restante es un grafo completo $K_{n-(k-1)}$ entonces la cantidad de aristas en ese caso es $\frac{(n-k+1)(n-k)}{2}$
+    
+    \item Equivalencias de árboles
+    \begin{enumerate}
+    \item $T$ es un árbol.
+    \item$T$ no contiene ciclos y tiene $(n-1)$ aristas.
+    \item$T$ es conexo y tiene $(n-1)$ aristas.
+    \item$T$ es conexo $y$ toda arista es una arista de corte.
+    \item Todo par de vértices de $T$ están conectados por exactamente un camino simple.
+    \item$T$ no contiene ciclos y $T+e$ tiene exactamente un ciclo.
+    \end{enumerate}
+    \begin{itemize}
+        \item $1 \Rightarrow 2)$ T es un árbol por definición no contiene ciclos y ya demostramos por Euler que tiene $n-1$ aristas.
+        \item $2 \Rightarrow 3)$ Que tiene $n-1$ aristas es hipótesis. Suponga que $T$ tiene $k$ componentes entonces el bosque tiene $n-k$ aristas ver corolario $4 \Rightarrow k=1 \Rightarrow$ T es conexo. Es un árbol 
+        \item $3\Rightarrow 4)$ Que $T$ es conexo es hipótesis. Sea e una arista de $T \Rightarrow T-e$ contiene $n-2$ aristas. Por el corolario 5 todo grafo $G$ de $n$ vértices tiene al menos $n-$ $k(G)$ aristas, entonces $T-e$ tiene al menos dos componentes por lo que $e$ es una arista de corte.
+        \item $4\Rightarrow 5)$ Que todo vértice está conectado por un camino se deduce de la hipótesis de que es conexo. Supongamos que existen dos vértices $u$ y $v$ unidos por dos caminos distintos dichos caminos pueden tener aristas en común, pero en un momento los caminos divergen supongamos que eso sucede en un vértice $x$  $y$ que vuelven a encontrarse en un vértice $y$, entonces existe un ciclo que contiene a los vértices $x$ e $y$ entonces hay aristas en el grafo que no son de corte. Absurdo.
+        \item  $5\Rightarrow 6)$ T no contiene ciclos ya que por hipótesis todo par de vértices está unido por exactamente un camino simple, si hubiera un ciclo todos sus vértices (los del ciclo) estarían unidos por dos caminos simples contradiciendo la hipótesis. La adición de una arista $e=\{a, b\}$ entre un par cualquiera de vértices $a, b$ genera un ciclo que surge de la concatenación del camino simple que existe por hipótesis con $<a, e, b>$. No puede generar más de un ciclo porque eso significaría que existía un ciclo antes de agregar la arista.
+        \item $6\Rightarrow 1)$ Que $T$ no contiene ciclos es hipótesis. Faltaría ver que es conexo. Supongamos que no entonces el grafo tiene al menos dos componentes conexas. Si tomamos un par de vértices en distintas componentes y agregamos una arista entre ellos esta no formaría un ciclo contradiciendo la hipótesis.
+    \end{itemize}
+    
+    \item Sea $T$ un árbol con n vértices y sea $G$ un grafo simple tal que el $\delta_{\min }(G) \geq n-1$ entonces $T$ es un subgrafo de $G$. \\
+    Si $n=1$ o $n=2$ es obviamente cierto ya que $K_{1}$ y $K_{2}$ son subgrafos de todo grafo con al menos una arista. \\
+    Hi) Supongamos que vale para cierto $n \geq 2$. \\
+    Veamos que Ti) Vale $n+1$ \\
+    Sea $T$ un árbol con $n+1$ vértices $y$ sea $G$ un grafo cuyo $\delta_{\min }(G) \geq(n+1)-1, \delta_{\min }(G) \geq n$ Tomemos un vértice $v$ que sea una hoja del árbol y sea $u$ el único adyacente a $v$ en el árbol. Vemos que $T-v$ es un árbol con $n$ vértices.\\
+    Por Hi) $T$ - $v$ es subgrafo de G ya que $\delta_{\min }(G) \geq n \geq n-1$. Como $\delta_{\min }(G) \geq n$, existe en G un vértice $w$ que no está en $T-v$ y que es adyacente a u. Sea $e=\{u, w\}$ entonces $T-v$ junto con la arista $e=\{u, w\}$ y el vértice $w$ forman un grafo que es isomorfo a $T$ y es subgrafo de $G$.
+    
+    \item Un árbol $m$-ario tiene como mucho $m^{k}$ vértices en el nivel $k$. En el nivel cero sólo tenemos a la raíz $m^{0}=1$ \\
+    HI) Supongamos que en nivel $k$ tenemos como mucho $m^{k}$ vértices \\
+    TI) En nivel $\mathrm{k}+1$ tenemos como mucho $\mathrm{m}^{k+1}$ vértices \\
+    Cada vértice del nivel $k$ tiene a lo sumo $\mathrm{m}$ hijos entonces en el nivel $\mathrm{k}+1$ tendremos a los sumo $m^{k} \cdot m=m^{k+1}$ vértices
+    
+    \item Un árbol binario completo de altura h tiene $2^{h+1}-1$ vertices \\
+    Sea $S=1+m+m^2+\dots+m^h(1)$ la suma de la cantidad de vertices máximos por nivel, entonces $S\cdot m=m+m^2+m^3+\dots+m^{h+1}(2)$ \\
+    Restando $(2)-(1)$ queda $S(m-1)=m^{h+1}-1 \implies S=\frac{m^{h+1}-1}{m-1}$ \\
+    Reemplazo $m=2$ y queda demostrado \\
+    Para la cota inferior: se suma la cantidad mínima de vértices (1 por cada nivel, partiendo del cero). Por lo tanto la sumatoria es igual a $h+1$. \\
+    $$h+1\leq n \leq \frac{m^{h+1}-1}{m-1}$$
+    
+    \item Sea T un árbol que resulta de aplicar DFS a un grafo G conexo, entonces la raíz r de T es un vértice de corte de G  r tiene más de un hijo en T. \\
+    \textbf{Truco ida: Supongo que r tiene un único hijo u} $\implies$ \textbf{el subárbol con u como raíz es recubridor de G-r.} \\
+    Supongo que r tiene un único hijo u $\rightarrow$ todos los otros vértices son descendientes de u $\rightarrow$ el subarbol que tiene como raíz a u es un árbol recubridor de G-r $\rightarrow$ G-r es conexo $\rightarrow$ r no es vértice de corte. \\
+    \textbf{Truco vuelta: Supongo que v y w son dos hijos de r, no van a tener aristas entre ellos.} \\
+    Supongo que v y w son dos hijos de r, como no tienen descendencia en común no hay aristas que unan el subárbol de v con el de w $\implies$ todos los caminos v-w pasan por r $\implies$ r es de corte.
+    
+    \item Sea T un árbol que resulta de aplicar DFS a un grafo G conexo, entonces un vértice de T que no es raíz es un vértice de corte de G $\iff$ v tiene un hijo w tal que ningún descendiente de w está unido a un ancestro propio de v por una arista en G-T. \\
+    \textbf{Truco ida: Por el contrarrecíproco, todo hijo Wi de v tiene un descendiente unido a un ancestro de v  v no es de corte.} \\
+    Supongo que todo hijo $W_i$ de v tiene un descendiente unido a un ancestro de v. Tomo x e y descendientes propios de v. Si x e y pertenecen al mismo subárbol $W_i$ entonces existe un camino que no contiene a v. Si x e y no pertenecen al mismo subárbol $W_i$ entonces existe el camino que va desde el descendiente de x a un antecesor de v, desde ahí a otro antecesor de v que está conectado a y. Entonces v no es de corte. \\
+    \textbf{Truco vuelta: Directo, todo camino r-w pasa por v} \\
+    Si v tiene un hijo w tal que ningún descendiente de w está unido a un ancestro propio de v por una arista en G-T, entonces todo camino r-w debe pasar por v por lo que v es de corte.
+    
+    \subsection{Redes}
+    \item Sea $<Vf, Vs>$ un corte f-s en la red N entonces todo camino directo f-s en N contiene por lo menos un arco en este conjunto de corte \\
+    Sea un camino directo f-s en la red: $<f, v_1, v_2, …, v_k, s>$, como $f \in V_f$ y $s \in V_s$ debe haber un primer vértice $V_j$ en el camino que esté en $V_s$ entonces la arista $(V_{j-1}, V_j) \in <V_f, V_s>.$
+    
+    \item Sea $f$ un flujo en una red $N$ y sea $<V_{f}, V_{s}>$ un corte.\\ Entonces $val(f)=\sum_{e\in<V_f,V_s>}f(e)-\sum_{e\in<V_s,V_f>}f(e)$ \\
+    Por definición, el valor del flujo es $\operatorname{val}(f)=\sum_{e \in \operatorname{Sal}(f)} f(e)-\sum_{e \in \operatorname{Ent}(f)} f(e)$ y por conservación del flujo $\sum_{e \in \operatorname{Ent}(v)} f(e)=\sum_{e \in \operatorname{Sal}(v)} f(e)$, $\forall v \in V_{N} / v \neq f$ y $v \neq s$
+    $$
+    \operatorname{val}(f)=\sum_{v \in V_{f}}\left(\sum_{e \in \operatorname{Sal}(v)} f(e)-\sum_{e \in \operatorname{Ent}(v)} f(e)\right)=\sum_{v \in V_{f}} \sum_{e \in \operatorname{Sal}(v)} f(e)-\sum_{v \in V_{f}} \sum_{e \in \operatorname{Ent}(v)} f(e)
+    $$
+    
+    $$
+    \operatorname{val}(f)=\sum_{e \in\left\langle V_{f}, V_{s}\right\rangle} f(e)+\sum_{e \in\left\langle V_{f}, V_{f}\right\rangle} f(e)-\sum_{e \in\left\langle V_{f}, V_{f}\right\rangle} f(e)-\sum_{e \in\left\langle V_{s}, V_{f}\right\rangle} f(e) \Rightarrow
+    $$
+    
+    $$
+    \operatorname{val}(f)=\sum_{e \in\left\langle V_{f}, V_{s}\right\rangle} f(e)-\sum_{e \in\left\langle V_{s}, V_{f}\right\rangle} f(e)
+    $$
+    
+    \item Sea f un flujo en una red N y sea $<V_f, V_s>$ un corte. Supongamos que val(f) = cap(k). Entonces f es un flujo máximo y k es un corte mínimo. \\
+    \begin{itemize}
+        \item $val(f*) \leq cap(k) = val(f) \leq val(f*) \implies f* = f.$
+        \item $cap(k*) \leq cap(k) = val(f) \leq cap(k*) \implies k* = k.$
+    \end{itemize}
+    
+    \item Cantidad de caminos en una red: Sean N una red $f-s$ tal que $g_s(f)>g_e(f);g_e(s)>g_s(s)$ y $g_s(v)=g_e(v)$ para cualquier otro vertice, entonces existe por lo menos un camino directo $f-s$ \\
+    Si $g_s(f)-g_e(f)=m=g_e(s)-g_s(s)$ y $g_s(v)=g_e(v)$ entonces existen m caminos directos $f-s$
+\end{enumerate}
+\end{document}
