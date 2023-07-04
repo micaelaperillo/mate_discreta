@@ -17,8 +17,8 @@
  }
  
 \title{Matemática Discreta}
-\author{Micaela Perillo}
-\date{Agosto 2021}
+\author{Micaela Perillo \\ Augusto Cicciomessere}
+\date{Agosto 2021, Actualizado en Junio 2023}
 
 \renewcommand*\contentsname{Índice}
 
@@ -43,7 +43,7 @@ arista tiene un conjunto de uno o más vértices asociados que se llaman puntos 
 \end{defn}
 
 \begin{defn}
-Grafo trivial \\ $\#V=1 \mathrm{y} \mathbf{\not{e}}=0$
+Grafo trivial \\ $\#V=1 \hspace{0.2cm} \mathrm{y} \hspace{0.2cm} \#E=0$
 \end{defn}
 
 \begin{defn}
@@ -67,8 +67,8 @@ Multigrafo dirigido \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ es un mult
 \end{defn}
 
 \begin{defn}
-Matriz de Incidencia \\ La matriz de incidencia de un grafo $G$ es la matriz $I_{C}$ cuyas filas y columnas son indexadas por alguin orden de $V_{G}$ y $E_{G}$ respectivamente, tal que:
-$$I_{C}[v, e]=\left\{\begin{array}{l}0 \text { si v no es un extremo de } e \text {; } \\ 1 \text { si v es un extremo de } e \text {; } \\ 2 \text { si e es un lazo en v. }\end{array}\right.$$ Si es un digrafo:
+Matriz de Incidencia \\ La matriz de incidencia de un grafo $G$ es la matriz $I_{G}$ cuyas filas y columnas son indexadas por alguin orden de $V_{G}$ y $E_{G}$ respectivamente, tal que:
+$$I_{G}[v, e]=\left\{\begin{array}{l}0 \text { si v no es un extremo de } e \text {; } \\ 1 \text { si v es un extremo de } e \text {; } \\ 2 \text { si e es un lazo en v. }\end{array}\right.$$ Si es un digrafo:
 $$I_{D}[v, e]=\left\{\begin{array}{ll}0 & \text { si } \mathrm{v} \text { es un extremo de } e \\ 1 & \text { si } \mathrm{v} \text { es la cabeza de } e \\ -1 & \text { si } \mathrm{v} \text { es la cola de } \mathrm{e} ; \\ 2 & \text { si e es un lazo de } \mathrm{v} .\end{array}\right.$$
 \end{defn}
 
@@ -79,7 +79,7 @@ $$A_{D}[u, v]=\left\{\begin{array}{ll}\text { la cantidad de aristas desde } u \
 \end{defn}
 
 \begin{defn}
-Grado \\ El grado de un vértice en un grafo $G$ denotado $\mathrm{g}(\mathrm{v})$ es el número de aristas propias incidentes en v más el doble del número de lazos en v. \\ En un digrafo se define grado de salida de un vértice v $g_{s}(v)$ al número de aristas cuya cola está en v más el número de lazos y el grado de entrada de un vértice v $g_{\varepsilon}(v)$ al número de aristas cuya cabeza está en $\mathrm{v}$ más el número de lazos.
+Grado \\ El grado de un vértice en un grafo $G$ denotado $\mathrm{g}(\mathrm{v})$ es el número de aristas propias incidentes en v más el doble del número de lazos en v. \\ En un digrafo se define grado de salida de un vértice v $g_{s}(v)$ al número de aristas cuya cola está en v más el número de lazos y el grado de entrada de un vértice v $g_{e}(v)$ al número de aristas cuya cabeza está en $\mathrm{v}$ más el número de lazos.
 \end{defn}
 
 \begin{defn}
@@ -87,15 +87,15 @@ Grafo completo \\ Es un grafo simple sin lazos tal que todo par de vértices est
 \end{defn}
 
 \begin{defn}
-Grafo bipartito \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ simple sin lazos es bipartito si $V=V_{1} \cup V_{2}, V_{1} \cap V_{2}=0$ y cada arista de $G$ es de la forma a,b donde $a \in V_{1}$ y $\mathrm{b} \in V_{2}$. Si cada vértice de $V_{1}$ está unido con todos los vértices de $V_{2}$, se tiene un grafo bipartito completo. En este caso si $\# V_{1}=\mathrm{m}$ y $\#V_{2}=\mathrm{n}$ se denota $K_{m, n}$
+Grafo bipartito \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ simple sin lazos es bipartito si $V=V_{1} \cup V_{2}, V_{1} \cap V_{2}=0$ y cada arista de $G$ es de la forma a,b donde $a \in V_{1}$ y $\mathrm{b} \in V_{2}$. Si cada vértice de $V_{1}$ está unido con todos los vértices de $V_{2}$, se tiene un grafo bipartito completo. En este caso si $\# V_{1}=\mathrm{m}$ y $\#V_{2}=\mathrm{n}$ se denota $K_{m, n}$ (Debe existir una partición, no cualquier partición)
 \end{defn}
 
 \begin{defn}
-Grafo regular \\ Todos los vértices tienen el mismo grado. Se llama k-regular si todos los vértices tienen grado k
+Grafo regular \\ Todos los vértices tienen el mismo grado. Se llama k-regular si todos los vértices tienen grado k (Grafos $K_{n}$ son (n-1) regulares)
 \end{defn}
 
 \begin{defn}
-Subgrafo \\ Un subgrafo de un grafo G (dirigido o no) es un grafo $\mathrm{H}$, que cumple que $V_{H} \subseteq V_{G} \mathrm{y}$ $\bar{E}_{H} \subseteq \bar{E}_{G}$
+Subgrafo \\ Un subgrafo de un grafo G (dirigido o no) es un grafo $\mathrm{H}$, que cumple que $V_{H} \subseteq V_{G} \mathrm{y}$ ${E}_{H} \subseteq {E}_{G}$
 \end{defn}
 
 \begin{defn}
@@ -103,7 +103,7 @@ Subgrafo recubridor \\ $\mathrm{H}$ es un subgrafo recubridor de $\mathrm{G}$ si
 \end{defn}
 
 \begin{defn}
-Subgrafo inducido Sea $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ un grafo (dirigido o no). Si $0 \neq U \subseteq V$, el subgrafo de $\mathrm{G}$ inducido por $U$ es el subgrafo cuyo conjunto de vértices es $U$ y que contiene todas las aristas de $G$ de la forma: 
+Subgrafo inducido Sea $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ un grafo (dirigido o no). Si $\not0 \neq U \subseteq V$, el subgrafo de $\mathrm{G}$ inducido por $U$ es el subgrafo cuyo conjunto de vértices es $U$ y que contiene todas las aristas de $G$ de la forma: 
 \begin{enumerate}
     \item $(\mathrm{x}, \mathrm{y})$ para $\mathrm{x}, \mathrm{y} \in U$ si es dirigido.
     \item $\{\mathrm{x}, \mathrm{y}\}$ para $\mathrm{x}, \mathrm{y} \in U$ si es no dirigido.
@@ -124,7 +124,7 @@ Agregado de un vértice \\ Agregar un vértice $v$ a un grafo $\mathrm{G}$, dond
 \end{defn}
 
 \begin{defn}
-Agregado de una arista \\ Agregar una arista e entre dos vértices $v$ y $u$ del grafo $\mathrm{G}$ significa crear un supergrafo denotado $G \bigcup\{e\}$ donde el conjunto de vértices es $V_{G} \mathrm{y}$ el conjunto de aristas es $E_{G} \cup\{e\}$
+Agregado de una arista \\ Agregar una arista e entre dos vértices $v$ y $u$ del grafo $\mathrm{G}$ significa crear un supergrafo denotado $G \bigcup\{e\}$ donde el conjunto de vértices es $V_{G} \hspace{0.2cm} \mathrm{y}$ el conjunto de aristas es $E_{G} \cup\{e\}$
 \end{defn}
 
 \begin{defn}
@@ -145,6 +145,36 @@ Cuando existe dicha función $G_{1}$ y $G_{2}$ son grafos isomorfos. Notación: 
 \end{defn}
 
 \subsection{Caminos}
+
+\begin{defn}
+Camino \\ Un camino desde el vértice $v_{n}$ es una secuencia alternada w = $< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ de vértices y aristas donde $e_{i}$ = {$v_{i-1}, v_{i}$}
+\end{defn}
+
+\begin{defn}
+Camino directo \\ Un camino directo en un digrafo de $v_{0}$ a $v_{n}$ es una secuencia alternada w = $< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ de vértices y aristas donde $e_{i} = (v_{i-1}, v_{i})$ con i = 1,...,n.\\
+Notación: camino directo $v_{0}-v_{n}$
+\end{defn}
+
+\begin{defn}
+Longitud \\ La longitud de un camino o camino directo es el número de aristas que recorre el camino.
+\end{defn}
+
+\begin{defn}
+Cerrado \\ Un camino o camino directo x-y es cerrado si x = y, si no es abierto.
+\end{defn}
+
+\begin{defn}
+Concatenación \\ La concatenación de dos caminos $w_{1} = < v_{0}, e_{1}, v_{1}, e_{2},..., v_{k-1}, e_{k}, v_{k} >$ y $w_{2} = < v_{k}, e_{k+1}, v_{k+1}, e_{k+2},..., v_{n-1}, e_{n}, v_{n} >$ tal que $w_{2}$ empieza donde termina $w_{1}$ es el camino $w_{1}\circ w_{2} = < v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$
+\end{defn}
+
+\begin{defn}
+Subcamino \\ Un subcamino de $w = < v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ es una subsecuencia de entradas consecutivas $s = < v_{j}, e_{j+1}, v_{j+1}, e_{j+2},..., v_{k-1}, e_{k}, v_{k} >$ con $0\leq j \leq k \leq n$ que comienza y termina en un vértice. Un subcamino es en sí mismo un camino.
+\end{defn}
+
+\begin{defn}
+Vértice alcanzable \\  Un vértice $v$ es alcanzable desde un vértice $u$ si $\exists$ un camino $u-v$.
+\end{defn}
+
 \begin{defn}
 Conexidad \\ Un grafo es conexo si $\forall$ par de vértices $u$ y $v$ hay un camino $u-v$.
 \end{defn}
@@ -156,6 +186,37 @@ Digrafo Conexo
     \item Conexidad fuerte: Un digrafo es fuertemente conexo si todo par de vértices en el digrafo es mutuamente alcanzable. Dos vértices $u$ y $v$ son mutuamente alcanzables si existen en el digrafo un camino directo $u-v$ y un camino directo $v-u$.
 \end{itemize} 
 \end{defn}
+
+\begin{defn}
+Distancia \\ En un grafo la distancia de $s$ a $t$ es la longitud del camino más corto de $s$ a $t$ o infinito si no hay camino.\\
+En los digrafos la distancia directa es el largo del camino directo más corto.\\
+Notación:$d(s,t)$
+\end{defn}
+
+\begin{defn}
+Reducción de un camino \\ Dado un camino $w-< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ que contiene un subcamino cerrado $v = < v_{k}, e_{k+1}, v_{k+1}, e_{k+2},..., v_{m-1}, e_{m}, v_{k} >$ la reducción de $w$ por $v$ denotada por $w-v$ es el camino $w-v=< v_{0}, e_{1},...,v_{k-1},e_{k}, v{k},e{m+1},..., v_{n-1}, e_{n}, v_{n} >$, es decir que borra todas las aristas y vertices de $v$ menos $v_{k}$
+\end{defn}
+
+\begin{defn}
+Recorrido \\ Es un camino que no repite aristas.
+\end{defn}
+
+\begin{defn}
+Camino simple \\ Es un camino que no repite veritces. (Todo camino simple es un recorrido, pero no al revés)
+\end{defn}
+
+\begin{defn}
+Circuito \\ Es un recorrido cerrado.
+\end{defn}
+
+\begin{defn}
+Ciclo \\ Es un camino simple cerrado. (Todo ciclo es circuito, pero no al revés)
+\end{defn}
+
+\begin{defn}
+Collección de ciclos de aristas disjuntas \\ Una colección de ciclos de aristas disjuntas $G_{1}, G_{2},..., G_{m}$ es llamada una descomposición de un circuito Y si los $G_{i}$ son subcaminos de T y $E_{T} = \cup_{1}^{m}E_{G_{i}}$ y $\cap_{1}^{m}E_{G_{i}} = \emptyset$
+\end{defn}
+
 \begin{defn}
 Recorrido euleriano \\ Un recorrido euleriano en un grafo es un recorrido que contiene todas las aristas del grafo.
 \end{defn}
