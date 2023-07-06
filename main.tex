@@ -14,7 +14,8 @@
  total={160mm,247mm},
  left=30mm,
  top=30mm,
- }
+ 
+}
  
 \title{Matemática Discreta}
 \author{Micaela Perillo \\ Augusto Cicciomessere}
@@ -87,7 +88,7 @@ Grafo completo \\ Es un grafo simple sin lazos tal que todo par de vértices est
 \end{defn}
 
 \begin{defn}
-Grafo bipartito \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ simple sin lazos es bipartito si $V=V_{1} \cup V_{2}, V_{1} \cap V_{2}=0$ y cada arista de $G$ es de la forma a,b donde $a \in V_{1}$ y $\mathrm{b} \in V_{2}$. Si cada vértice de $V_{1}$ está unido con todos los vértices de $V_{2}$, se tiene un grafo bipartito completo. En este caso si $\# V_{1}=\mathrm{m}$ y $\#V_{2}=\mathrm{n}$ se denota $K_{m, n}$ (Debe existir una partición, no cualquier partición)
+Grafo bipartito \\ Un grafo $\mathrm{G}=(\mathrm{V}, \mathrm{E})$ es bipartito si $V=V_{1} \cup V_{2}, V_{1} \cap V_{2}=\varnothing$ y cada arista de $G$ es de la forma a,b donde $a \in V_{1}$ y $\mathrm{b} \in V_{2}$. Si cada vértice de $V_{1}$ está unido con todos los vértices de $V_{2}$, se tiene un grafo bipartito completo. En este caso si $\# V_{1}=\mathrm{m}$ y $\#V_{2}=\mathrm{n}$ se denota $K_{m, n}$ (Debe existir una partición, no cualquier partición)
 \end{defn}
 
 \begin{defn}
@@ -147,7 +148,7 @@ Cuando existe dicha función $G_{1}$ y $G_{2}$ son grafos isomorfos. Notación: 
 \subsection{Caminos}
 
 \begin{defn}
-Camino \\ Un camino desde el vértice $v_{n}$ es una secuencia alternada w = $< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ de vértices y aristas donde $e_{i}$ = {$v_{i-1}, v_{i}$}
+Camino \\ Un camino desde el vértice $v_{0}$ hasta el vértice $v_{n}$ es una secuencia alternada w = $< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ de vértices y aristas donde $e_{i}$ = $\{v_{i-1}, v_{i}\}$
 \end{defn}
 
 \begin{defn}
@@ -160,7 +161,7 @@ Longitud \\ La longitud de un camino o camino directo es el número de aristas q
 \end{defn}
 
 \begin{defn}
-Cerrado \\ Un camino o camino directo x-y es cerrado si x = y, si no es abierto.
+Cerrado \\ Un camino o camino directo x-y es cerrado si x = y, si no, es abierto.
 \end{defn}
 
 \begin{defn}
@@ -194,7 +195,7 @@ Notación:$d(s,t)$
 \end{defn}
 
 \begin{defn}
-Reducción de un camino \\ Dado un camino $w-< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ que contiene un subcamino cerrado $v = < v_{k}, e_{k+1}, v_{k+1}, e_{k+2},..., v_{m-1}, e_{m}, v_{k} >$ la reducción de $w$ por $v$ denotada por $w-v$ es el camino $w-v=< v_{0}, e_{1},...,v_{k-1},e_{k}, v{k},e{m+1},..., v_{n-1}, e_{n}, v_{n} >$, es decir que borra todas las aristas y vertices de $v$ menos $v_{k}$
+Reducción de un camino \\ Dado un camino $w-< v_{0}, e_{1}, v_{1}, e_{2},..., v_{n-1}, e_{n}, v_{n} >$ que contiene un subcamino cerrado $v = < v_{k}, e_{k+1}, v_{k+1}, e_{k+2},...,\\ v_{m-1}, e_{m}, v_{k} >$ la reducción de $w$ por $v$ denotada por $w-v$ es el camino $w-v=< v_{0}, e_{1},...,v_{k-1},e_{k}, v{k},e{m+1},...,\\ v_{n-1}, e_{n}, v_{n} >$, es decir que borra todas las aristas y vertices de $v$ menos $v_{k}$
 \end{defn}
 
 \begin{defn}
@@ -202,7 +203,7 @@ Recorrido \\ Es un camino que no repite aristas.
 \end{defn}
 
 \begin{defn}
-Camino simple \\ Es un camino que no repite veritces. (Todo camino simple es un recorrido, pero no al revés)
+Camino simple \\ Es un camino que no repite véritces. (Todo camino simple es un recorrido, pero no al revés)
 \end{defn}
 
 \begin{defn}
@@ -214,7 +215,7 @@ Ciclo \\ Es un camino simple cerrado. (Todo ciclo es circuito, pero no al revés
 \end{defn}
 
 \begin{defn}
-Collección de ciclos de aristas disjuntas \\ Una colección de ciclos de aristas disjuntas $G_{1}, G_{2},..., G_{m}$ es llamada una descomposición de un circuito Y si los $G_{i}$ son subcaminos de T y $E_{T} = \cup_{1}^{m}E_{G_{i}}$ y $\cap_{1}^{m}E_{G_{i}} = \emptyset$
+Colección de ciclos de aristas disjuntas \\ Una colección de ciclos de aristas disjuntas $G_{1}, G_{2},..., G_{m}$ es llamada una descomposición de un circuito T si los $G_{i}$ son subcaminos de T y $E_{T} = \cup_{1}^{m}E_{G_{i}}$ y $\cap_{1}^{m}E_{G_{i}} = \emptyset$
 \end{defn}
 
 \begin{defn}
@@ -293,7 +294,7 @@ La relación de homeomorfismo es una relación de equivalencia. \\
 Operaciones
 \begin{itemize}
     \item Subdivisión elemental de una arista: Sea $e=\{u, v\}$ una arista del grafo $G .$ Subdividir e significa agregar $w$ a $V_{G}$ y reemplazar e por $e_{1}=\{u, w\} \mathrm{y}$ $e_{2}=\{w, v\}$
-    \item Remover débilmente un vértioe: es la operación inversa a la anterior. Sea $w$ un vértice de grado dos en $G$ tal que $e_{1}=\{u, w\}$ y $e_{2}=\{w, v\}$ son las aristas incidentes en él, remover débilmente $w$ significa sacar $w$ de $V_{G}$ y reemplazar $e_{1}$ y $e_{2}$ por la arista $e=\{u, v\}$
+    \item Remover débilmente un vértice: es la operación inversa a la anterior. Sea $w$ un vértice de grado dos en $G$ tal que $e_{1}=\{u, w\}$ y $e_{2}=\{w, v\}$ son las aristas incidentes en él, remover débilmente $w$ significa sacar $w$ de $V_{G}$ y reemplazar $e_{1}$ y $e_{2}$ por la arista $e=\{u, v\}$
 
 \end{itemize}
 Si el grafo $G$ es homeomorfo o isomorfo al grafo $H$, entonces:
@@ -308,13 +309,7 @@ La relación de inseparables por $H$ es una relación de equivalencia sobre $E_{
 \end{defn}
 
 \begin{defn}
-Apendice de H \\ Sea $H$ un subgrafo de un grafo $G$. Entonces un apéndice de $H$ es el subgrafo inducido sobre una clase de equivalencia de aristas de $E_{G}-E_{H}$ bajo la relación de inseparables.
-\end{defn}
-
-\subsection{Grafo Dual}
-
-\begin{defn}
-Grafo Dual \\ Para construir un dual de una inmersión plana de un grafo o multigrado plano G, colocamos un vértice dentro de cada región incluyendo la región infinita. Para cada arista compartida por dos regiones dibujamos una arista que une los vértices que están dentro de cada región. Si la frontera de la región tiene una arista que se recorre dos veces dibujamos un lazo en el vértice de dicha región.
+Apéndice de H \\ Sea $H$ un subgrafo de un grafo $G$. Entonces un apéndice de $H$ es el subgrafo inducido sobre una clase de equivalencia de aristas de $E_{G}-E_{H}$ bajo la relación de inseparables.
 \end{defn}
  
 \subsection{Coloreo}
@@ -345,7 +340,7 @@ Cromatico \\ $G$ es $k$-cromático si $X(G)=k$.
 \end{defn}
 
 \begin{defn}
-Obstrucción Cromática \\ Una obstrucción $k$ cromática es un subgrafo $H / X(H)>k$. Entonces fuerza a todo grafo que la contiene a tener $X(G)>k$.
+Obstrucción Cromática \\ Una obstrucción $k$ cromática es un subgrafo $H / X(H)>k$. Entonces fuerza a todo grafo que la contiene a tener $X(G)>k$.\\ NOTA IMPORTANTE: ESTA DEFINICIÓN NO SE DEFINIÓ EN LA TEORÍA PERO SI SE USÓ.
 \end{defn}
 
 \subsection{Árboles}
@@ -355,7 +350,7 @@ Obstrucción Cromática \\ Una obstrucción $k$ cromática es un subgrafo $H / X
 \end{defn}
 
 \begin{defn}
-Árbol con Raíz \\ Árbol dirigido con un vertice distinguido $r$ llamado raíz tal que para todo otro vértice $v$ hay un camino directo de $r$ a $v$.
+Árbol con Raíz \\ Árbol dirigido con un vértice distinguido $r$ llamado raíz tal que para todo otro vértice $v$ hay un camino directo de $r$ a $v$.
 \end{defn}
 
 \begin{defn}
@@ -367,7 +362,7 @@ Altura \\ La altura de un árbol con raíz es la longitud del camino más largo 
 \end{defn}
 
 \begin{defn}
-Árbol m-ario \\ Un árbol m-ario con $m\geq2$ es un árbol con raíz en el cual cada vértice tiene máximo ni hijos. 
+Árbol m-ario \\ Un árbol m-ario con $m\geq2$ es un árbol con raíz en el cual cada vértice tiene máximo n hijos. 
 \end{defn}
 
 \begin{defn}
@@ -375,7 +370,7 @@ Altura \\ La altura de un árbol con raíz es la longitud del camino más largo 
 \end{defn}
 
 \begin{defn}
-Código binario \\ Es una asginación de símbolos a cadenas de bits. Cada cadena de bits se llama palabra del código. 36) Código prefijo: es un código binario donde ninguna palabra del código es subpalabra inicial de otra.
+Código binario \\ Es una asginación de símbolos a cadenas de bits. Cada cadena de bits se llama palabra del código.
 \end{defn}
 \begin{defn}
 Código Prefijo \\ Es un código binario donde ninguna palabra del código es subpalabra inicial de otra
@@ -427,14 +422,14 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
     V_{2}=\left\{u \in V_{G}: d(x, u) \text { es impar }\right\}
     \end{array}
     $$
-    $V_{1} \neq\{\varnothing\}$ ya que $x \in V_{1}$ y la $d(x, x)=0$ que es par \\
-    $V_{2} \neq\{\varnothing\}$ pues $G$ es conexo entonces existe una arista $\{x, v\}$ en el grafo por lo tanto $v \in V_{2}$ ya que la $d(x, v)=1$ que es impar \\
+    $V_{1} \neq\varnothing $ ya que $x \in V_{1}$ y la $d(x, x)=0$ que es par \\
+    $V_{2} \neq\varnothing $ pues $G$ es conexo entonces existe una arista $\{x, v\}$ en el grafo por lo tanto $v \in V_{2}$ ya que la $d(x, v)=1$ que es impar \\
     Supongamos que existe una arista $\left\{v^{\prime}, v\right\}$ entre un vértice $v$ de $V_{1}$ y uno $v^{\prime}$ de $V_{1}$ como la $d(x, v)=2 k$ y la $d\left(x, v^{\prime}\right)=2 q$ donde $k$ y $q$ son números enteros entonces el camino $x-v$ o $<v,\left\{v^{\prime}, v\right\}, v^{\prime}>$ o $v^{\prime}-x$ sería un ciclo de longitud $2 k+2 q+1$ y esto es absurdo porque por hipótesis el grafo no tiene ciclos de longitud impar.
 
 \subsection{Caminos}
 
     \item Sea $x - y$ un camino abierto, entonces $x − y$ es un camino simple o puede reducirse a un camino simple. \\
-    Si no $x - y$ es un camino simple, entonces contiene un subcamino cerrado, si lo
+    Si $x - y$ no es un camino simple, entonces contiene un subcamino cerrado, si lo
     borramos (reducción de camino) obtenemos un camino más corto que puede ser
     simple o no. Si es simple listo, sino contiene un subcamino cerrado y repetimos la reducción hasta obtener un camino simple.
     
@@ -484,7 +479,7 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
         Veamos que hay un camino $x-y$ cuando $x \lor y$ no son extremos de e. Supongamos $x \neq a$, $y \neq a .$ Como $G \backslash W \backslash$ a es conexo $\Rightarrow$ existe camino $x-y$ en $G \backslash W \backslash$ e pues al sacar a desaparece e.
     \end{itemize}
 
-    \item Sea G un grafo conexo, la conectividad por aristas es mayor o igual que la conectividad por vertices: $K_e(G)\geq K_v(G)$ \\
+    \item Sea G un grafo conexo, la conectividad por aristas es mayor o igual que la conectividad por vértices: $K_e(G)\geq K_v(G)$ \\
     Supongo $K_v(G) = k$ y sea S un conjunto de k-1 aristas de G, G-S es conexo $\implies$ $K_e(G)>k-1 \implies$ $K_e(G)k = K_v(G)$. \\
     Importante: $\delta \geq K_e(G) \geq K_v(G) \geq k$ (conexidad)
     
@@ -500,11 +495,11 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
     Supongo C=$G_0$, $G_1$, …, $G_n$=G una síntesis de Whitney de G a partir de un ciclo C. Como todo ciclo es 2-conexo y al agregarle un camino simple se mantiene la 2-conexidad entonces G es 2-conexo.
     
     \item Sea $h_k(n)$ la mínima cantidad de aristas necesarias para un grafo k-conexo con n-vertices. Entonces $h_k(n)\geq\frac{kn}{2}$ \\
-    $$k\leq k_v(g)\leq k_e(G)\leq\delta \land 2\#E=\sum_{v_i\in V_G}g(V_i)\geq n\delta\geq nk_e\geq nk_v\geq nk \implies h_k(n)=\left[\frac{kn}{2}\right]$$
+    $$k\leq k_v(g)\leq k_e(G)\leq\delta \land 2\#E=\sum_{v_i\in V_G}g(V_i)\geq n\delta\geq nk_e\geq nk_v\geq nk \implies h_k(n)=\lceil\frac{kn}{2}\rceil$$
     $h_k$ es la mínima cantidad de aristas para un grafo de $n$ vértices $k$-conexo
     
     \item Teorema de Euler \\
-    G plano, conexo con v vertice, e aristas y r regiones determinadas por una inmersión plana de G $\implies$ $v-e+r=2$ \\
+    G plano, conexo con v vértices, e aristas y r regiones determinadas por una inmersión plana de G $\implies$ $v-e+r=2$ \\
     \textbf{Truco: Inducción en aristas, caso 1 si le quito una arista sigue conexo, caso 2 si se desconecta.} \\
     Caso Base) $K_1$, $e=0$, $v=1$, $r=1$ entonces 1-0+1=2. \\
     Hipótesis Inductiva) Supongo válida para $e\leq k$ $v - e + r = 2$. \\
@@ -519,7 +514,7 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
     \end{itemize}
     
     \item Corolario 1 de Euler: G plano, conexo con v vértices, e aristas y r regiones determinadas por una inmersión plana de G \\
-    $k_{v}(G) \leq k_{e}(G) \leq \delta$ $2 \# E=\sum_{v_{i} \in V_{G}} g\left(v_{i}\right) \geq n \delta \geq n k_{e}(G) \geq n k_{v}(G) \geq n k$ $\Rightarrow h_{k}(n)=\left[\frac{k n}{2}\right]$ es la mínima cantidad de aristas para un grafo de n vértices k conexo
+    $k_{v}(G) \leq k_{e}(G) \leq \delta$ $2 \# E=\sum_{v_{i} \in V_{G}} g\left(v_{i}\right) \geq n \delta \geq n k_{e}(G) \geq n k_{v}(G) \geq n k$ $\Rightarrow h_{k}(n)=\lceil\frac{k n}{2}\rceil$ es la mínima cantidad de aristas para un grafo de n vértices k conexo
     $$
     \Rightarrow \sum_{i=1}^{r} g\left(R_{i}\right)=2 e
     $$
@@ -530,7 +525,7 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
     
     \item Corolario 3 de Euler: G plano, conexo y bipartito con al menos 2 aristas \\
     Como es bipartito, no tiene lazos ni multiaristas. Entonces tiene como minimo 2 aristas\\
-    Numero de regiones
+    Número de regiones:
     $$\sum_{i=1}^rg(R_i)\geq4r\implies4r\leq2e\land v-e+r=2 \implies r=2-v+e$$
     $$\implies 4(2-v+e)\leq3e\implies 8-4v+4e\leq 2e\implies e\leq 2v-4$$
     En un grafo bipartito la frontera de cada región incluyendo la infinita
@@ -545,12 +540,12 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
     Lo mismo puede plantearse para $y$. Luego $\left(B_{1} \cup B_{2}\right)$ no tiene vértice de corte $\mathrm{y}$ esto contradice la maximalidad.
     
 \subsection{Coloreo}
-    \item Sea G k-critico $\impliesg(V_i)\geq k-1$, $\forall$ $V_i\in V_G$ \\
+    \item Sea G k-critico $\impliesg g(V_i)\geq k-1$, $\forall$ $V_i\in V_G$ \\
     \textbf{Truco: Supongo $g(vi)<k-1$, quito el vértice, pinto los adyacentes de diferentes colores y veo que poniendolo de nuevo puedo pintarlos con k-1 colores, absurdo porque es k-crítico.} \\
     Supongo $g(v_i)<k-1$, al quitar $v_i$ el grafo resultante se puede pintar con k-2 colores pues $v_i$ tiene a lo sumo k-2 adyacentes, pero agregándolo de nuevo uso k-1 colores, absurdo porque se necesitaban k colores.
     
-    \item Sea G un grafo $X(G) \geq \left[\frac{\#V_G}{ind(G)}\right]$ \\
-    Cada clase de color tiene como mucho ind(G) vertices.\\
+    \item Sea G un grafo $X(G) \geq \lceil\frac{\#V_G}{ind(G)}\rceil$ \\
+    Cada clase de color tiene como mucho ind(G) vértices.\\
     La cantidad de vertices $n=\sum_{i=1}^{X(G)}n_i\leq X(G).ind(G)$ siendo $n_i$ la cantidad de vertices de cada clase de color
 
 \subsection{Arboles}
@@ -618,7 +613,7 @@ Capacidad de un corte \\ La capacidad de un corte $<Vf,Vs>$ denotada $cap<Vf,Vs>
     Para la cota inferior: se suma la cantidad mínima de vértices (1 por cada nivel, partiendo del cero). Por lo tanto la sumatoria es igual a $h+1$. \\
     $$h+1\leq n \leq \frac{m^{h+1}-1}{m-1}$$
     
-    \item Sea T un árbol que resulta de aplicar DFS a un grafo G conexo, entonces la raíz r de T es un vértice de corte de G  r tiene más de un hijo en T. \\
+    \item Sea T un árbol que resulta de aplicar DFS a un grafo G conexo, entonces la raíz r de T es un vértice de corte de G $\iff$ r tiene más de un hijo en T. \\
     \textbf{Truco ida: Supongo que r tiene un único hijo u} $\implies$ \textbf{el subárbol con u como raíz es recubridor de G-r.} \\
     Supongo que r tiene un único hijo u $\rightarrow$ todos los otros vértices son descendientes de u $\rightarrow$ el subarbol que tiene como raíz a u es un árbol recubridor de G-r $\rightarrow$ G-r es conexo $\rightarrow$ r no es vértice de corte. \\
     \textbf{Truco vuelta: Supongo que v y w son dos hijos de r, no van a tener aristas entre ellos.} \\
